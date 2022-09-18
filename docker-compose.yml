@@ -1,0 +1,10 @@
+services:
+	web:
+		build:
+			context: .
+			dockerfile: robotics.Dockerfile
+                ports:
+                  - "8888:8888"
+                  - "5000:5000"
+        ubuntu:
+		image: ubuntu: latest
