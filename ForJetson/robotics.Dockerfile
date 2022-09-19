@@ -24,8 +24,7 @@ RUN echo 'PATH=$PATH:/hello-world' > ~/.bash_profile
 RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
 RUN apt update 
 RUN apt upgrade -y
+# if did not have the line below ros installation would ask for geo location
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt install ros-humble-desktop -y # takes a while to download 
+RUN apt install ros-humble-ros-base -y 
 RUN source /opt/ros/humble/setup.bash
-# for Gazebo, use one liner
-RUN curl -sSL http://get.gazebosim.org | sh 
