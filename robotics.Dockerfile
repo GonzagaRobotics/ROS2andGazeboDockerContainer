@@ -1,3 +1,4 @@
+FROM ubuntu:latest
 RUN apt-get update
 RUN apt install firefox # for downloading Arduino IDE or other
 RUN apt install wget -y
