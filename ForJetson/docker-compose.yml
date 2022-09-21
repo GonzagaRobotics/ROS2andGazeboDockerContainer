@@ -1,3 +1,5 @@
+version: '3.3'
+
 services:
   robotics:
     build:
@@ -6,3 +8,4 @@ services:
     ports:
          - "8888:8888"
          - "5000:5000"
+    command: tail -F anything
