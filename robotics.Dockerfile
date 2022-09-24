@@ -1,6 +1,8 @@
 FROM ubuntu:latest
 RUN apt-get update
 RUN apt install firefox -y # for downloading Arduino IDE or other
+RUN apt install tmux -y
+RUN apt install git -y
 RUN apt install wget -y
 RUN apt install curl -y
 # for ROS2
