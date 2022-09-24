@@ -19,9 +19,9 @@ Windows
   - Go to your command prompt and run ipconfig/all 
   - Then look for the IPv4 address under “Ethernet adapter vEthernet (WSL):” 
   - May have to keep updating your DISPLAY environment variable after closing and reopening your docker container 
-- gazebo 
-  - Type this command to make sure your container works 
-- You can use this command to start up container after: docker start -ai robotics 
+- `ign gazebo` 
+  - Type this command to make sure your container can display graphics 
+- You can use this command to start up container after: `docker start -ai robotics` 
 
 MAC (Test installation of this docker container on someone’s Mac): 
 - Download XQuartz: https://www.xquartz.org/  
