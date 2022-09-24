@@ -35,3 +35,7 @@ Linux:
 - gazebo 
  - Type this command to make sure your container works 
 - You can use this command to start up container after: docker start -ai robotics 
+
+Tutorials to go through:
+- ROS2: https://docs.ros.org/en/humble/Tutorials.html
+- Ignition Gazebo: https://gazebosim.org/docs
