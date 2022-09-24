@@ -28,13 +28,13 @@ MAC (Test installation of this docker container on someone’s Mac):
 - Follow Running GUI’s with Docker on Mac OS X: https://cntnr.io/running-guis-with-docker-on-mac-os-x-a14df6a76efc  
 
 Linux:  
-- git clone git@github.com:GonzagaRobotics/ROS2andGazeboDockerContainer.git 
-- cd ROS2andGazeboDockerContainer 
-- docker-compose up 
-- sudo docker run -it --name robotics ros2andgazebodockercontainer-robotics 
-- gazebo 
+- `git clone git@github.com:GonzagaRobotics/ROS2andGazeboDockerContainer.git` 
+- `cd ROS2andGazeboDockerContainer` 
+- `docker-compose up` 
+- `sudo docker run -it --name robotics ros2andgazebodockercontainer-robotics` 
+- `ign gazebo` 
  - Type this command to make sure your container works 
-- You can use this command to start up container after: docker start -ai robotics 
+- You can use this command to start up container after: `docker start -ai robotics` 
 
 Tutorials to go through:
 - ROS2: https://docs.ros.org/en/humble/Tutorials.html
