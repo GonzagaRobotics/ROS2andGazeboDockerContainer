@@ -1,10 +1,6 @@
 FROM ubuntu:latest
 RUN apt-get update
-RUN apt install firefox -y # for downloading Arduino IDE or other
-RUN apt install tmux -y
-RUN apt install git -y
-RUN apt install wget -y
-RUN apt install curl -y
+RUN apt install tmux git wget curl vim -y
 # for ROS2
 RUN apt update && apt install locales -y
 RUN locale-gen en_US en_US.UTF-8
@@ -31,9 +27,9 @@ RUN apt install ros-humble-desktop -y # takes a while to download
 RUN source /opt/ros/humble/setup.bash
 # for Ignition Gazebo
 RUN apt-get update
-RUN apt-get install lsb-release wget gnupg
+RUN apt-get install lsb-release wget gnupg -y # these are probably installed already
 RUN wget https://packages.osrfoundation.org/gazebo.gpg -O /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
 RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
 RUN apt-get update
-RUN apt-get install ignition-fortress
+RUN apt-get install ignition-fortress -y
 
