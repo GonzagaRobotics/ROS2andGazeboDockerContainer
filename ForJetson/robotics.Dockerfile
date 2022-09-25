@@ -25,4 +25,5 @@ RUN apt upgrade -y
 # if did not have the line below ros installation would ask for geo location
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt install ros-humble-ros-base -y 
+RUN apt install ros-humble-turtlesim -y
 RUN source /opt/ros/humble/setup.bash

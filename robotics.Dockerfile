@@ -23,7 +23,8 @@ RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/r
 RUN apt update 
 RUN apt upgrade -y
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt install ros-humble-desktop -y # takes a while to download 
+RUN apt install ros-humble-desktop -y # takes a while to download
+RUN apt install ros-humble-turtlesim -y
 RUN source /opt/ros/humble/setup.bash
 # for Ignition Gazebo
 RUN apt-get update
