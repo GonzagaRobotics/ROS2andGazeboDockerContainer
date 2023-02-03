@@ -33,4 +33,11 @@ RUN wget https://packages.osrfoundation.org/gazebo.gpg -O /usr/share/keyrings/pk
 RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
 RUN apt-get update
 RUN apt-get install ignition-fortress -y
-
+# Setting up more ROS things from the tutorial
+RUN source /opt/ros/humble/setup.bash
+RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+RUN export ROS_DOMAIN_ID=1
+RUN echo "export ROS_DOMAIN_ID=1" >> ~/.bashrc
+ # not going to restrict to local host only
+RUN sudo apt install ~nros-humble-rqt*
+RUN sudo apt install python3-colcon-common-extensions
