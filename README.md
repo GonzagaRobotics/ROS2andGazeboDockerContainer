@@ -8,3 +8,6 @@ Tutorials to go through:
   - For opening multiple terminal windows for the Docker instance use tmux: https://www.ocf.berkeley.edu/~ckuehl/tmux/
   - For opening and writing to text files use Vim: https://www.openvim.com/
 - Ignition Gazebo: https://gazebosim.org/docs
+
+Info:
+- Contains ROS2 Humble and Ignition Gazebo as well as ROS2 setup with commands from the tutorial
