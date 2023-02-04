@@ -6,6 +6,6 @@ services:
       context: ./
       dockerfile: robotics.Dockerfile
     ports:
-         - "8888:8888"
-         - "5000:5000"
+      - "8888:8888"
+      - "5000:5000"
     tty: true

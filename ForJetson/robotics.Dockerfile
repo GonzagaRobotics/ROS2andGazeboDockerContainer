@@ -27,3 +27,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt install ros-humble-ros-base -y 
 RUN apt install ros-humble-turtlesim -y
 RUN source /opt/ros/humble/setup.bash
+# Setting up more ROS things from the tutorial
+RUN source /opt/ros/humble/setup.bash
+RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+RUN export ROS_DOMAIN_ID=1
+RUN echo "export ROS_DOMAIN_ID=1" >> ~/.bashrc
+ # not going to restrict to local host only
+RUN apt install ~nros-humble-rqt* -y
+RUN apt install python3-colcon-common-extensions -y
