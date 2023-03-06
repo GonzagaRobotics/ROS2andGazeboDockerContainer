@@ -13,6 +13,21 @@ RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o 
 # use bash instead of sh start
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
+#for microros
+RUN cd ~/
+RUN source /opt/ros/humble/setup.bash
+RUN mkdir microros_ws
+RUN cd microros_ws
+RUN git clone -b humble https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
+RUN apt update && rosdep updaterosdep install --from-paths src --ignore-src -y
+RUN apt-get install python3-pip -y
+RUN colcon build
+RUN source install/local_setup.bash
+RUN ros2 run micro_ros_setup create_agent_ws.sh
+RUN ros2 run micro_ros_setup build_agent.sh
+RUN source install/local_setup.bash
+
+
 # Create a .profile
 RUN echo 'PATH=$PATH:/foo/bar' > ~/.profile
 
