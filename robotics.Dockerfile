@@ -53,9 +53,10 @@ RUN mkdir microros_ws
 RUN cd microros_ws
 RUN git clone -b humble https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
 #RUN pip3 install -U rosinstall vcstools rospkg
+RUN apt-get install python3-pip -y
 RUN apt-get install python-rosdep -y
 RUN apt update && rosdep updaterosdep install --from-paths src --ignore-src -y
-RUN apt-get install python3-pip -y
+
 RUN colcon build
 RUN source install/local_setup.bash
 RUN ros2 run micro_ros_setup create_agent_ws.sh
