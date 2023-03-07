@@ -55,9 +55,9 @@ RUN git clone -b humble https://github.com/micro-ROS/micro_ros_setup.git src/mic
 #RUN pip3 install -U rosinstall vcstools rospkg
 RUN apt-get install python3-pip -y
 RUN apt-get install python3-rosdep -y
-RUN rosdep init
+RUN /bin/bash -c "source /opt/ros/humble/setup.bash; rosdep init"
 RUN apt update && rosdep update
-RUN rosdep install --from-paths src --ignore-src -y --rosdistro humble
+RUN /bin/bash -c "source /opt/ros/humble/setup.bash; rosdep install --from-paths src --ignore-src -y --rosdistro humble"
 RUN apt install python3-colcon-common-extensions -y
 RUN /bin/bash -c "source /opt/ros/humble/setup.bash; colcon build"
 RUN source install/local_setup.bash
