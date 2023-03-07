@@ -58,7 +58,7 @@ RUN apt-get install python3-rosdep -y
 RUN rosdep init
 RUN apt update && rosdep update
 RUN rosdep install --from-paths src --ignore-src -y --rosdistro humble
-
+RUN apt install python3-colcon-common-extensions -y
 RUN colcon build
 RUN source install/local_setup.bash
 RUN ros2 run micro_ros_setup create_agent_ws.sh
