@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 RUN apt-get update
-#RUN sudo apt install tmux -y
+RUN apt install tmux -y
 RUN apt install git -y
 RUN apt install wget -y
 RUN apt install curl -y
