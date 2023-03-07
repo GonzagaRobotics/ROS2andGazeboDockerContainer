@@ -1,10 +1,10 @@
 FROM ubuntu:latest
 RUN apt-get update
-RUN apt-get install tmux -y
-RUN apt-get install git -y
-RUN apt-get install wget -y
-RUN apt-get install curl -y
-RUN apt-get install vim -y
+RUN apt-get -y install tmux 
+RUN apt-get -y install git
+RUN apt-get -y install wget
+RUN apt-get -y install curl
+RUN apt-get -y install vim
 # for ROS2
 RUN apt update && apt install locales -y
 RUN locale-gen en_US en_US.UTF-8
