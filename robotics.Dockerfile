@@ -57,7 +57,7 @@ RUN apt-get install python3-pip -y
 RUN apt-get install python3-rosdep -y
 RUN rosdep init
 RUN apt update && rosdep update
-RUN rosdep install --from-paths src --ignore-src -y
+RUN rosdep install --from-paths src --ignore-src -y --rosdistro humble
 
 RUN colcon build
 RUN source install/local_setup.bash
