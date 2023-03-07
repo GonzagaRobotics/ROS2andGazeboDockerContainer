@@ -52,9 +52,9 @@ RUN source /opt/ros/humble/setup.bash
 RUN mkdir microros_ws
 RUN cd microros_ws
 RUN git clone -b humble https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
-RUN pip3 install -U rosinstall vcstools rospkg
 RUN apt-get install python3-pip -y
 RUN apt-get install python3-rosdep -y
+RUN pip3 install -U rosinstall vcstools rospkg
 RUN /bin/bash -c "source /opt/ros/humble/setup.bash; rosdep init"
 RUN apt update && rosdep update
 RUN /bin/bash -c "source /opt/ros/humble/setup.bash; rosdep install --from-paths src --ignore-src -y --rosdistro humble"
