@@ -1,5 +1,6 @@
 FROM ubuntu:latest
 RUN apt-get update
+RUN apt-get install -y apt-transport-https
 RUN apt-get -y install tmux 
 RUN apt-get -y install git
 RUN apt-get -y install wget
