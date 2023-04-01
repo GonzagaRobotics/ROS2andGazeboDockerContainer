@@ -41,3 +41,6 @@ RUN echo "export ROS_DOMAIN_ID=1" >> ~/.bashrc
  # not going to restrict to local host only
 RUN apt install ~nros-humble-rqt* -y
 RUN apt install python3-colcon-common-extensions -y
+RUN apt install python3-rosdep -y --fix-missing
+RUN apt install python3-pip
+
