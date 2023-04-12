@@ -5,7 +5,10 @@ services:
     build:
       context: ./
       dockerfile: robotics.Dockerfile
-    ports:
-      - "8888:8888"
-      - "5000:5000"
+    privileged: true
+    environment:
+      - DISPLAY=$DISPLAY
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - $XDG_RUNTIME_DIR:/tmp/runtime-root
     command: tail -F anything # will run container forever
