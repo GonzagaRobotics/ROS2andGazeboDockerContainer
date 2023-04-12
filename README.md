@@ -10,6 +10,8 @@
   - Run `./start_linux_docker.sh` to start and enter the container
 - Mac
   - Run `./start_mac_docker.sh` to start and enter the container
+- On Jetson
+  - Run `./start_jetson_docker.sh` to start and enter the container
 
 Tutorials to go through:
 - ROS2: https://docs.ros.org/en/humble/Tutorials.html
