@@ -1,7 +1,15 @@
 # ROS2andGazeboDockerContainer
 
-Installation Instructions: 
-- Follow: https://github.com/GonzagaRobotics/Newcomers-ROS/issues/3
+##Installation Instructions: 
+- For all
+ - clone repo with `git clone git@github.com:GonzagaRobotics/ROS2andGazeboDockerContainer.git`
+ - run `cd ROS2andGazeboDockerContainer`
+- Windows
+ - Run `.\start_windows_docker.bat` to start and enter the container
+- Linux
+ - Run `./start_linux_docker.sh` to start and enter the container
+- Mac
+ - Run `./start_mac_docker.sh` to start and enter the container
 
 Tutorials to go through:
 - ROS2: https://docs.ros.org/en/humble/Tutorials.html
