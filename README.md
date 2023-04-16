@@ -15,7 +15,7 @@
     - uncheck the `Native opengl` option
     - Save these settings to a `config.xlaunch` file so you can tap this file and not have to go through these steps
     - run `config.xlaunch` whenever you want to launch a GUI program with your docker container
-  - In the `ROS2andGazeboDockerContainer` repo run `.\start_windows_docker.bat` to start and enter the container
+  - Using the `Command Prompt` in the `ROS2andGazeboDockerContainer` repo run `.\start_windows_docker.bat` to start and enter the container
   - Enter command `vim ~/.bashrc`
   - `Shift+G` to go to the bottom of the file
   - press `i` to enter insert mode (DO NOT USE YOUR MOUSE TO CLICK, use arrow keys to move around the cursor)
