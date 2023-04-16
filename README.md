@@ -2,16 +2,30 @@
 
 ##Installation Instructions: 
 - For all
+  - Highly recommended that change your computer to become either a dual booted or purely Linux computer (as ROS and Gazebo with USB pass through work natively only on Linux machines)
+  - Download docker desktop: https://www.docker.com/products/docker-desktop
+  - Or for Linux download the `apt` version of Docker (here: https://docs.docker.com/engine/install/ubuntu/) not the `snap` version
   - clone repo with `git clone git@github.com:GonzagaRobotics/ROS2andGazeboDockerContainer.git`
   - run `cd ROS2andGazeboDockerContainer`
 - Windows
+  - Download and Install WSL 2: https://learn.microsoft.com/en-us/windows/wsl/install-manual
+  - Download and install VcXsrv: https://sourceforge.net/projects/vcxsrv/
+  - Run xlaunch.exe, which is in `C:\Program Files\VcXSrv\` after installing and on the extra settings page:
+    - check the clipboard, primary selection, and disable access control options
+    - uncheck the `Native opengl` option
+    - Save these settings to a `config.xlaunch` file so you can tap this file and not have to go through these steps
+    - run `config.xlaunch` whenever you want to launch a GUI program with your docker container
   - Run `.\start_windows_docker.bat` to start and enter the container
 - Linux
   - Run `./start_linux_docker.sh` to start and enter the container
 - Mac
+  - Download XQuartz: https://www.xquartz.org/
+  - Follow Running GUI’s with Docker on Mac OS X: https://cntnr.io/running-guis-with-docker-on-mac-os-x-a14df6a76efc
   - Run `./start_mac_docker.sh` to start and enter the container
 - On Jetson
   - Run `./start_jetson_docker.sh` to start and enter the container
+- On All to make sure graphics are working
+  - Test with `ign gazebo` in the container
 
 Tutorials to go through:
 - ROS2: https://docs.ros.org/en/humble/Tutorials.html
