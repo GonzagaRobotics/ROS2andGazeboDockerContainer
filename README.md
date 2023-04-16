@@ -16,6 +16,15 @@
     - Save these settings to a `config.xlaunch` file so you can tap this file and not have to go through these steps
     - run `config.xlaunch` whenever you want to launch a GUI program with your docker container
   - Run `.\start_windows_docker.bat` to start and enter the container
+  - Enter command `vim ~/.bashrc`
+  - `Shift+G` to go to the bottom of the file
+  - press `i` to enter insert mode (DO NOT USE YOUR MOUSE TO CLICK, use arrow keys to move around the cursor)
+  - Type: `export DISPLAY=":0.0"`
+    - Replace with your virtual ethernet ip address, which you can get from:
+      - Go to your command prompt (a new one, outside the container) and run `ipconfig/all`
+      - Then look for the IPv4 address under `Ethernet adapter vEthernet (WSL):`
+  - Exit vim by pressing the escape key, `ESC`, then typing `:q` then enter.
+  - back in the container command line, run `source ~/.bashrc`
 - Linux
   - Run `./start_linux_docker.sh` to start and enter the container
 - Mac
