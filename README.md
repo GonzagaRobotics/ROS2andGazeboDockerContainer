@@ -20,7 +20,7 @@
   - `Shift+G` to go to the bottom of the file
   - press `i` to enter insert mode (DO NOT USE YOUR MOUSE TO CLICK, use arrow keys to move around the cursor)
   - Type: `export DISPLAY=host.docker.internal:0.0`
-  - Exit vim by pressing the escape key, `ESC`, then typing `:q` then enter.
+  - Exit and save the on vim by pressing the escape key, `ESC`, then typing `:wq` then enter.
   - back in the container command line, run `source ~/.bashrc`
 - Linux
   - Run `./start_linux_docker.sh` to start and enter the container
