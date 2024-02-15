@@ -1,6 +1,10 @@
 FROM ubuntu:latest
-RUN apt-get update
-RUN apt install tmux git wget curl vim -y
+
+WORKDIR /app
+
+# copying all folders
+COPY . .
+
 # for ROS2
 RUN apt update && apt install locales -y
 RUN locale-gen en_US en_US.UTF-8
@@ -24,14 +28,31 @@ RUN apt update
 RUN apt upgrade -y
 # if did not have the line below ros installation would ask for geo location
 ENV DEBIAN_FRONTEND=noninteractive
+
+# ROS2 Humble
 RUN apt install ros-humble-ros-base -y 
-RUN apt install ros-humble-turtlesim -y
-RUN source /opt/ros/humble/setup.bash
-# Setting up more ROS things from the tutorial
-RUN source /opt/ros/humble/setup.bash
-RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
-RUN export ROS_DOMAIN_ID=1
-RUN echo "export ROS_DOMAIN_ID=1" >> ~/.bashrc
- # not going to restrict to local host only
+
+# RQT
 RUN apt install ~nros-humble-rqt* -y
+
+# Rosdep
+RUN apt install python3-rosdep -y
+RUN rosdep init
+RUN rosdep update
+
+# Colcon
 RUN apt install python3-colcon-common-extensions -y
+RUN apt install g++ -y
+
+# Rosbridge
+RUN apt install ros-humble-rosbridge-suite -y
+
+# Setting up more ROS things from the tutorial
+RUN echo "source /opt/ros/humble/setup.bash; source /app/install/local_setup.bash" >> ~/.bashrc
+RUN source ~/.bashrc
+
+# Install dependencies and build the workspace
+RUN rosdep install -i --from-path src --rosdistro humble -y
+RUN source /opt/ros/humble/setup.bash && colcon build --symlink-install
+
+ENTRYPOINT ["docker_scripts/jetson/ros_entrypoint.sh"]

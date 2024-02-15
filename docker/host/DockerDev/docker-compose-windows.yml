@@ -4,7 +4,10 @@ services:
   robotics:
     build:
       context: ./
-      dockerfile: robotics.Dockerfile
+      dockerfile: hostDockerfile  
+    environment:
+      DISPLAY: host.docker.internal:0
+      XDG_RUNTIME_DIR: ${XDG_RUNTIME_DIR:-/tmp/}
     ports:
       - "8888:8888"
       - "5000:5000"
