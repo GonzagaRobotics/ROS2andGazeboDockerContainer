@@ -9,4 +9,6 @@ services:
     # pid: "host"
     ports:
       - "9090:9090"
+      - "8788:8788"
+      - "4000:4000"
     command: tail -F anything # will run container forever
