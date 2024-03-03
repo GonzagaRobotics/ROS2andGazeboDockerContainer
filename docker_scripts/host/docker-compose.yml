@@ -3,8 +3,8 @@ version: "2"
 services:
   rover_main:
     build:
-      context: ../..
-      dockerfile: docker_scripts/dockerfile
+      context: ../../../
+      dockerfile: docker_scripts/host/dockerfile
     tty: true
     privileged: true
     environment:
@@ -21,7 +21,3 @@ services:
     ports:
       - "9090:9090"
     command: tail -F anything
-
-volumes:
-  ros_vol:
-    driver: local

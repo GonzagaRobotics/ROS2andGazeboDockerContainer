@@ -22,10 +22,16 @@ RUN echo 'PATH=$PATH:/hello-world' > ~/.bash_profile
 # Add the ros package repository
 RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
 
-RUN apt update
+RUN apt update 
 RUN apt upgrade -y
 # To prevent the ros installer from asking for location
 ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update
+RUN wget https://packages.osrfoundation.org/gazebo.gpg -O /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
+RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
+RUN apt-get update
+RUN apt-get install ignition-fortress -y
 
 # ROS2 Humble
 RUN apt-get install ros-humble-ros-base -y
@@ -49,15 +55,6 @@ RUN apt-get install -y \
     ros-humble-compressed-image-transport \
     ros-humble-compressed-depth-image-transport
 
-# Install libdatachannel from source
-# RUN git clone https://github.com/paullouisageneau/libdatachannel.git /tmp/libdatachannel
-# RUN cd /tmp/libdatachannel && \
-#     git submodule update --init --recursive --depth 1 && \
-#     cmake -B build -DUSE_GNUTLS=0 -DUSE_NICE=0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local
-# RUN cd /tmp/libdatachannel/build && make install
-# RUN rm -rf /tmp/libdatachannel
-
-# Copy everything to the container
 COPY . .
 
 # Set up rosdep
