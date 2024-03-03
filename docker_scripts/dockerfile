@@ -1,0 +1,74 @@
+FROM ubuntu:latest
+
+WORKDIR /app
+
+# Setup sources that ROS2 requires
+RUN apt update && apt install locales -y
+RUN locale-gen en_US en_US.UTF-8
+RUN update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+RUN export LANG=en_US.UTF-8
+RUN apt install software-properties-common -y
+RUN add-apt-repository universe
+RUN apt update && apt install curl gnupg lsb-release -y
+RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+# Use bash instead of sh start
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+# Create a .profile and .bash_profile
+# Damon here: This was already in the original dockerfile, but I don't know why
+RUN echo 'PATH=$PATH:/foo/bar' > ~/.profile
+RUN echo 'PATH=$PATH:/hello-world' > ~/.bash_profile
+
+# Add the ros package repository
+RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
+
+RUN apt update 
+RUN apt upgrade -y
+# To prevent the ros installer from asking for location
+ENV DEBIAN_FRONTEND=noninteractive
+
+# ROS2 Humble
+RUN apt-get install ros-humble-ros-base -y 
+
+# Core tools
+RUN apt-get install -y \
+    python3-rosdep \
+    python3-colcon-common-extensions \
+    g++ \
+    ros-humble-rosbridge-suite \
+    ros-humble-rviz2 \
+    ~nros-humble-rqt* \
+    build-essential \
+    cmake \
+    git-all \
+    ros-humble-librealsense2* \
+    ros-humble-realsense2-*
+
+# Other tools
+RUN apt-get install -y \
+    ros-humble-compressed-image-transport \
+    ros-humble-compressed-depth-image-transport
+
+# Install libdatachannel from source
+# RUN git clone https://github.com/paullouisageneau/libdatachannel.git /tmp/libdatachannel
+# RUN cd /tmp/libdatachannel && \
+#     git submodule update --init --recursive --depth 1 && \
+#     cmake -B build -DUSE_GNUTLS=0 -DUSE_NICE=0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local
+# RUN cd /tmp/libdatachannel/build && make install
+# RUN rm -rf /tmp/libdatachannel
+
+# Copy everything to the container
+COPY . .
+
+# Set up rosdep
+RUN rosdep init
+RUN rosdep update
+
+# Automatically source humble and local setup.bash
+RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+RUN echo "if [ -f /app/ros/install/local_setup.bash ]; then source /app/ros/install/local_setup.bash; fi" >> ~/.bashrc
+# Add some helpful aliases
+RUN echo "alias auto_launch='ros2 launch /app/ros/launch/launch.py'" >> ~/.bashrc
+RUN source ~/.bashrc
+
+ENTRYPOINT ["docker_scripts/ros_entrypoint.sh"]
