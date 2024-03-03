@@ -1,0 +1,17 @@
+version: "2"
+
+services:
+  rover_main:
+    build:
+      context: ../../../
+      dockerfile: docker_scripts/host/dockerfile
+    tty: true
+    privileged: true
+    environment:
+      - DISPLAY=${DISPLAY}
+    device_cgroup_rules:
+      - "c 81:* rmw"
+      - "c 189:* rmw"
+    ports:
+      - "9090:9090"
+    command: tail -F anything
